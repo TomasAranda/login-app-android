@@ -9,5 +9,15 @@
         android:id="@+id/welcomeFragment"
         android:name="com.example.login_app.WelcomeFragment"
         android:label="fragment_welcome"
-        tools:layout="@layout/fragment_welcome" />
+        tools:layout="@layout/fragment_welcome" >
+        <action
+            android:id="@+id/action_welcomeFragment_to_logInFormFragment"
+            app:destination="@id/logInFormFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/logInFormFragment"
+        android:name="com.example.login_app.LogInFormFragment"
+        android:label="fragment_log_in_form"
+        tools:layout="@layout/fragment_log_in_form" />
 </navigation>
