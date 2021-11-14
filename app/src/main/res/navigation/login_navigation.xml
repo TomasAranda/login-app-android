@@ -12,12 +12,20 @@
         tools:layout="@layout/fragment_welcome" >
         <action
             android:id="@+id/action_welcomeFragment_to_logInFormFragment"
-            app:destination="@id/logInFormFragment" />
+            app:destination="@id/logInFormFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
 
     <fragment
         android:id="@+id/logInFormFragment"
         android:name="com.example.login_app.LogInFormFragment"
         android:label="fragment_log_in_form"
-        tools:layout="@layout/fragment_log_in_form" />
+        tools:layout="@layout/fragment_log_in_form" >
+        <argument
+            android:name="loginType"
+            app:argType="com.example.login_app.LoginType" />
+    </fragment>
 </navigation>
