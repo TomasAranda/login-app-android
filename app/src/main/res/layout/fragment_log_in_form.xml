@@ -24,7 +24,7 @@
         android:layout_marginStart="32dp"/>
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/editTextTextUsername"
         android:layout_width="360dp"
         android:layout_height="wrap_content"
         android:ems="10"

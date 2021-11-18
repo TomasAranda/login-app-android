@@ -9,8 +9,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center"
-    >
+    android:gravity="center">
 
     <TextView
         android:id="@+id/list_title"
@@ -22,7 +21,6 @@
         android:textColor="@color/black"
         tools:text="TITLE"/>
 
-<!--        android:name="com.example.login_app.UserAdapter"-->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list"
         android:layout_width="match_parent"
