@@ -24,8 +24,20 @@
         android:name="com.example.login_app.LogInFormFragment"
         android:label="fragment_log_in_form"
         tools:layout="@layout/fragment_log_in_form" >
+        <action
+            android:id="@+id/action_logInFormFragment_to_userFragment"
+            app:destination="@id/userFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
         <argument
             android:name="loginType"
             app:argType="com.example.login_app.LoginType" />
     </fragment>
+    <fragment
+        android:id="@+id/userFragment"
+        android:name="com.example.login_app.UserFragment"
+        android:label="fragment_users_list"
+        tools:layout="@layout/fragment_users_list" />
 </navigation>
