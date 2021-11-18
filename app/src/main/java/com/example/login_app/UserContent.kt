@@ -21,12 +21,14 @@ object UserContent {
         return listOfUsers.find { it.name == name }
     }
 
-    fun registerNewUser(user: UserItem) {
-        if (findUserByName(user.name) == null) listOfUsers.add(0, user)
+    fun registerNewUser(newUser: UserItem) {
+        if (newUser.name == "" || newUser.password == "") throw Exception("Empty username or password")
+        if (findUserByName(newUser.name) == null) listOfUsers.add(0, newUser)
         else throw Exception("Username already taken")
     }
 
     fun logUserIn(candidateUser: UserItem): Boolean {
+        if (candidateUser.name == "" || candidateUser.password == "") throw Exception("Empty username or password")
         val foundUser = findUserByName(candidateUser.name)
         if (foundUser != null) {
             if (foundUser.password == candidateUser.password) return true
