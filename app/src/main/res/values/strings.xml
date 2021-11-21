@@ -8,4 +8,5 @@
     <string name="username">Usuario</string>
     <string name="password">Contraseña</string>
     <string name="log">Loguearse</string>
+    <string name="change_user">Cambiar</string>
 </resources>

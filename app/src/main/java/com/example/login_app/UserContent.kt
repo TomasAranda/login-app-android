@@ -10,8 +10,9 @@ object UserContent {
     private val COUNT = 1000
 
     init {
+        // Add my initial user
+        listOfUsers.add(UserItem(name = "Tomas", password = "password"))
         // Add some sample items.
-        listOfUsers.add(UserItem(name = "Tomás", password = "password"))
         for (i in 0..COUNT) {
             addUser(createUserItem())
         }
