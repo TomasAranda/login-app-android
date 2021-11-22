@@ -23,18 +23,18 @@ object UserContent {
     }
 
     fun registerNewUser(newUser: UserItem) {
-        if (newUser.name == "" || newUser.password == "") throw Exception("Usuario o Contraseña vacios")
+        if (newUser.name == "" || newUser.password == "") throw EmptyUsernameOrPasswordException("Usuario o Contraseña vacios")
         if (findUserByName(newUser.name) == null) listOfUsers.add(0, newUser)
-        else throw Exception("Nombre de usuario no disponible")
+        else throw UsernameAlreadyTakenException("Nombre de usuario no disponible")
     }
 
     fun logUserIn(candidateUser: UserItem): Boolean {
-        if (candidateUser.name == "" || candidateUser.password == "") throw Exception("Usuario o Contraseña vacios")
+        if (candidateUser.name == "" || candidateUser.password == "") throw EmptyUsernameOrPasswordException("Usuario o Contraseña vacios")
         val foundUser = findUserByName(candidateUser.name)
         if (foundUser != null) {
             if (foundUser.password == candidateUser.password) return true
-            else throw Exception("Contraseña incorrecta")
-        } else throw Exception("Usuario no existe")
+            else throw WrongPasswordException("Contraseña incorrecta")
+        } else throw UsernameDoesNotExistException("Usuario no existe")
     }
 
     private fun addUser(user: UserItem) {

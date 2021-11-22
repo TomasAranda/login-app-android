@@ -43,12 +43,6 @@ class UserFragment : Fragment() {
 
         val view = binding.root
 
-        // hide keyboard, if there is focus from previous fragment
-        requireActivity().currentFocus?.let {
-            val imm = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
-            imm?.hideSoftInputFromWindow(it.windowToken, 0)
-        }
-
         binding.list.layoutManager = LinearLayoutManager(context)
         binding.list.adapter = UsersAdapter(UserContent.listOfUsers) { adapterOnClick(it) }
 

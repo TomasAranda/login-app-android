@@ -13,4 +13,6 @@
     <string name="dialog_title">Advertencia</string>
     <string name="ok">Continuar</string>
     <string name="cancel">Cancelar</string>
+    <string name="login_error_title">Error al iniciar sesión</string>
+    <string name="signup_error_title">Error al registrarse</string>
 </resources>
