@@ -7,7 +7,7 @@ object UserContent {
 
     val listOfUsers: MutableList<UserItem> = ArrayList()
 
-    private val COUNT = 1000
+    private const val COUNT = 1000
 
     init {
         // Add my initial user
@@ -23,18 +23,18 @@ object UserContent {
     }
 
     fun registerNewUser(newUser: UserItem) {
-        if (newUser.name == "" || newUser.password == "") throw Exception("Empty username or password")
+        if (newUser.name == "" || newUser.password == "") throw Exception("Usuario o Contraseña vacios")
         if (findUserByName(newUser.name) == null) listOfUsers.add(0, newUser)
-        else throw Exception("Username already taken")
+        else throw Exception("Nombre de usuario no disponible")
     }
 
     fun logUserIn(candidateUser: UserItem): Boolean {
-        if (candidateUser.name == "" || candidateUser.password == "") throw Exception("Empty username or password")
+        if (candidateUser.name == "" || candidateUser.password == "") throw Exception("Usuario o Contraseña vacios")
         val foundUser = findUserByName(candidateUser.name)
         if (foundUser != null) {
             if (foundUser.password == candidateUser.password) return true
-            else throw Exception("Wrong password")
-        } else throw Exception("Username not found")
+            else throw Exception("Contraseña incorrecta")
+        } else throw Exception("Usuario no existe")
     }
 
     private fun addUser(user: UserItem) {

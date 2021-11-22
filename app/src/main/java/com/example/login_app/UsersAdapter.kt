@@ -39,10 +39,6 @@ class UsersAdapter(
         val idView: TextView = binding.itemNumber
         val contentView: TextView = binding.content
         val button: Button = binding.changeWelcomeUser
-
-        override fun toString(): String {
-            return super.toString() + " '" + contentView.text + "'"
-        }
     }
 
 }

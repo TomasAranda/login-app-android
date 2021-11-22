@@ -26,6 +26,13 @@ class LogInFormFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val formTitle = view.findViewById<TextView>(R.id.logFormTitle)
+
+        when (args.loginType) {
+            LoginType.LOG_IN -> formTitle.text = getString(R.string.log_in)
+            LoginType.SIGN_UP -> formTitle.text = getString(R.string.sign_up)
+        }
+
         view.findViewById<Button>(R.id.log_button).setOnClickListener {
             // Get EditText values
             val username = view.findViewById<EditText>(R.id.editTextTextUsername).text.toString()
@@ -43,21 +50,9 @@ class LogInFormFragment : Fragment() {
                 val action = LogInFormFragmentDirections.actionLogInFormFragmentToUserFragment(userToLog.name)
                 findNavController().navigate(action)
             } catch (e: Exception) {
-                // TODO: Show dialogAlert
-                Toast.makeText(context, "Error ${e.message}", Toast.LENGTH_LONG).show()
+                Toast.makeText(context, "Error: ${e.message}", Toast.LENGTH_LONG).show()
             }
         }
 
-        val formTitle = view.findViewById<TextView>(R.id.logFormTitle)
-
-        when (args.loginType) {
-            LoginType.LOG_IN -> {
-                formTitle.text = getString(R.string.log_in)
-            }
-            LoginType.SIGN_UP -> {
-                formTitle.text = getString(R.string.sign_up)
-            }
-        }
     }
-
 }
