@@ -35,25 +35,10 @@ class LogInFormFragment : Fragment() {
             LoginType.SIGN_UP -> formTitle.text = getString(R.string.sign_up)
         }
 
-        view.findViewById<Button>(R.id.log_button).setOnClickListener(onClickLogButton(view))
+        view.findViewById<Button>(R.id.log_button).setOnClickListener(onLogButtonClick(view))
     }
 
-    private fun showAlert(message: String, loginType: LoginType) {
-        val titleResource: Int = if(loginType == LoginType.LOG_IN) R.string.login_error_title else R.string.signup_error_title
-        val logErrorAlertDialog: AlertDialog? = activity?.let {
-            val builder = AlertDialog.Builder(it)
-            builder.apply {
-                setMessage(message)
-                setTitle(titleResource)
-                setCancelable(true)
-            }
-            builder.create()
-        }
-
-        logErrorAlertDialog?.show()
-    }
-
-    private fun onClickLogButton(view: View): View.OnClickListener {
+    private fun onLogButtonClick(view: View): View.OnClickListener {
         return View.OnClickListener {
             // Get EditText values
             val username = view.findViewById<EditText>(R.id.editTextTextUsername).text.toString()
@@ -70,7 +55,7 @@ class LogInFormFragment : Fragment() {
                 val action = LogInFormFragmentDirections.actionLogInFormFragmentToUserFragment(username)
                 findNavController().navigate(action)
             } catch (e: Exception) {
-                showAlert(e.message!!, args.loginType)
+                showLogErrorAlert(e.message!!, args.loginType)
             }
 
             // hide keyboard, if there is focus
@@ -79,5 +64,20 @@ class LogInFormFragment : Fragment() {
                 imm?.hideSoftInputFromWindow(it.windowToken, 0)
             }
         }
+    }
+
+    private fun showLogErrorAlert(message: String, loginType: LoginType) {
+        val titleResource: Int = if(loginType == LoginType.LOG_IN) R.string.login_error_title else R.string.signup_error_title
+        val logErrorAlertDialog: AlertDialog? = activity?.let {
+            val builder = AlertDialog.Builder(it)
+            builder.apply {
+                setMessage(message)
+                setTitle(titleResource)
+                setCancelable(true)
+            }
+            builder.create()
+        }
+
+        logErrorAlertDialog?.show()
     }
 }

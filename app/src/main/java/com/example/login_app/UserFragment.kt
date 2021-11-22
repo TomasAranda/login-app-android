@@ -1,18 +1,13 @@
 package com.example.login_app
 
 import android.app.AlertDialog
-import android.content.Context
-import android.content.DialogInterface
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.InputMethodManager
-import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
-import androidx.annotation.ColorInt
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentActivity
@@ -62,8 +57,8 @@ class UserFragment : Fragment() {
                 val logOutAlertDialog: AlertDialog? = activity?.let {
                     val builder = AlertDialog.Builder(it)
                     builder.apply {
-                        setMessage(R.string.dialog_message)
                         setTitle(R.string.dialog_title)
+                        setMessage(R.string.dialog_message)
 
                         setPositiveButton(R.string.ok) { _, _ ->
                             activity.findNavController(R.id.nav_host).navigate(R.id.action_userFragment_to_welcomeFragment)

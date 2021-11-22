@@ -2,7 +2,6 @@ package com.example.login_app
 
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
@@ -15,7 +14,6 @@ class UsersAdapter(
 ) : RecyclerView.Adapter<UsersAdapter.UserViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
-
         return UserViewHolder(
             UserItemBinding.inflate(
                 LayoutInflater.from(parent.context),
@@ -23,7 +21,6 @@ class UsersAdapter(
                 false
             )
         )
-
     }
 
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
