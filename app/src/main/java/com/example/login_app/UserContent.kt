@@ -22,17 +22,20 @@ object UserContent {
         return listOfUsers.find { it.name == name }
     }
 
-    fun registerNewUser(newUser: UserItem) {
-        if (newUser.name == "" || newUser.password == "") throw EmptyUsernameOrPasswordException("Usuario o Contraseña vacios")
-        if (findUserByName(newUser.name) == null) listOfUsers.add(0, newUser)
+    fun registerNewUser(username: String, password: String): Boolean {
+        if (username == "" || password == "") throw EmptyUsernameOrPasswordException("Usuario o Contraseña vacios")
+        if (findUserByName(username) == null) {
+            listOfUsers.add(0, createUserItem(username, password))
+            return true
+        }
         else throw UsernameAlreadyTakenException("Nombre de usuario no disponible")
     }
 
-    fun logUserIn(candidateUser: UserItem): Boolean {
-        if (candidateUser.name == "" || candidateUser.password == "") throw EmptyUsernameOrPasswordException("Usuario o Contraseña vacios")
-        val foundUser = findUserByName(candidateUser.name)
+    fun logUserIn(candidateUsername: String, candidatePassword: String): Boolean {
+        if (candidateUsername == "" || candidatePassword == "") throw EmptyUsernameOrPasswordException("Usuario o Contraseña vacios")
+        val foundUser = findUserByName(candidateUsername)
         if (foundUser != null) {
-            if (foundUser.password == candidateUser.password) return true
+            if (foundUser.password == candidatePassword) return true
             else throw WrongPasswordException("Contraseña incorrecta")
         } else throw UsernameDoesNotExistException("Usuario no existe")
     }
@@ -41,10 +44,10 @@ object UserContent {
         listOfUsers.add(user)
     }
 
-    private fun createUserItem(): UserItem {
+    private fun createUserItem(username: String = makeRandomUserName(6), password: String = "password"): UserItem {
         return UserItem(
-            name = makeRandomUserName(6),
-            password = "password"
+            name = username,
+            password = password
         )
     }
 

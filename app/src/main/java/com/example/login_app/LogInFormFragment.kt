@@ -59,16 +59,15 @@ class LogInFormFragment : Fragment() {
             val username = view.findViewById<EditText>(R.id.editTextTextUsername).text.toString()
             val password = view.findViewById<EditText>(R.id.editTextTextPassword).text.toString()
 
-            val userToLog = UserContent.UserItem(name = username, password = password)
             try {
                 // Log user
                 when (args.loginType) {
-                    LoginType.LOG_IN -> UserContent.logUserIn(userToLog)
-                    LoginType.SIGN_UP -> UserContent.registerNewUser(userToLog)
+                    LoginType.LOG_IN -> UserContent.logUserIn(username, password)
+                    LoginType.SIGN_UP -> UserContent.registerNewUser(username, password)
                 }
 
                 // Navigate
-                val action = LogInFormFragmentDirections.actionLogInFormFragmentToUserFragment(userToLog.name)
+                val action = LogInFormFragmentDirections.actionLogInFormFragmentToUserFragment(username)
                 findNavController().navigate(action)
             } catch (e: Exception) {
                 showAlert(e.message!!, args.loginType)
