@@ -3,10 +3,14 @@
     <string name="bienvenido">Bienvenido</string>
     <string name="already_registered">Si ya estas registrado:</string>
     <string name="log_in">Iniciar sesión</string>
-    <string name="new_user">Si sos nuevo usuario:</string>
+    <string name="new_user">ó si sos nuevo usuario:</string>
     <string name="sign_up">Registrarse</string>
     <string name="username">Usuario</string>
     <string name="password">Contraseña</string>
     <string name="log">Loguearse</string>
     <string name="change_user">Cambiar</string>
+    <string name="dialog_message">Sí continuas, cerrarás sesión</string>
+    <string name="dialog_title">Advertencia</string>
+    <string name="ok">Continuar</string>
+    <string name="cancel">Cancelar</string>
 </resources>
