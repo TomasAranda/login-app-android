@@ -8,11 +8,12 @@
     <string name="username">Usuario</string>
     <string name="password">Contraseña</string>
     <string name="log">Loguearse</string>
-    <string name="change_user">Cambiar</string>
+    <string name="go_to_user_detail">Detalle</string>
     <string name="dialog_message">Sí continuas, cerrarás sesión</string>
     <string name="dialog_title">Advertencia</string>
     <string name="ok">Continuar</string>
     <string name="cancel">Cancelar</string>
     <string name="login_error_title">Error al iniciar sesión</string>
     <string name="signup_error_title">Error al registrarse</string>
+    <string name="user_image_content_description">Profile image of user</string>
 </resources>
