@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.navArgs
 import com.example.login_app.databinding.FragmentUserDetailBinding
+import com.squareup.picasso.Picasso
 
 class UserDetail : Fragment() {
 
@@ -31,8 +32,7 @@ class UserDetail : Fragment() {
     private fun setUserData() {
         binding.userName.text = args.selectedUser.name
         binding.userEmail.text = args.selectedUser.email
-
-        // TODO: Add image with Picasso implementation
+        Picasso.get().load(args.selectedUser.imageUrl).into(binding.userImage)
     }
 
 }
