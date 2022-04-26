@@ -6,7 +6,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.navigation.findNavController
 import com.example.login_app.data.RandomUser
+import com.example.login_app.data.RandomUserArgument
 import com.example.login_app.data.RandomUserResponse
 
 import com.example.login_app.databinding.UserItemBinding
@@ -27,10 +29,15 @@ class UsersAdapter() : RecyclerView.Adapter<UsersAdapter.UserViewHolder>() {
 
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
         val item = values[position]
-        holder.idView.text = item.gender
-        holder.contentView.text = item.email
+        holder.idView.text = item.name.first
+        holder.contentView.text = item.name.last
         holder.button.setOnClickListener { view ->
-            // TODO: Navigate to User detail fragment
+            val action = UserFragmentDirections.actionUserFragmentToUserDetail(
+                RandomUserArgument(
+                    item.name.first, item.email, item.picture.large
+                )
+            )
+            view.findNavController().navigate(action)
         }
     }
 
