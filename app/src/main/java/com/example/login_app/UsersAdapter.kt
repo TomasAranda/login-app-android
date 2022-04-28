@@ -7,15 +7,14 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.navigation.findNavController
-import com.example.login_app.data.RandomUser
 import com.example.login_app.data.RandomUserArgument
-import com.example.login_app.data.RandomUserResponse
+import com.example.login_app.data.User
 
 import com.example.login_app.databinding.UserItemBinding
 
 class UsersAdapter() : RecyclerView.Adapter<UsersAdapter.UserViewHolder>() {
 
-    private var values = listOf<RandomUser>()
+    private var values = listOf<User>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
         return UserViewHolder(
@@ -29,12 +28,12 @@ class UsersAdapter() : RecyclerView.Adapter<UsersAdapter.UserViewHolder>() {
 
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
         val item = values[position]
-        holder.idView.text = item.name.first
-        holder.contentView.text = item.name.last
+        holder.idView.text = item.firstName
+        holder.contentView.text = item.lastName
         holder.button.setOnClickListener { view ->
             val action = UserFragmentDirections.actionUserFragmentToUserDetail(
                 RandomUserArgument(
-                    item.name.first, item.email, item.picture.large
+                    item.firstName, item.email, item.profileImageUrl
                 )
             )
             view.findNavController().navigate(action)
@@ -44,8 +43,8 @@ class UsersAdapter() : RecyclerView.Adapter<UsersAdapter.UserViewHolder>() {
     override fun getItemCount(): Int = values.size
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setUsers(users: RandomUserResponse) {
-        this.values = users.results
+    fun setUsers(users: List<User>) {
+        this.values = users
         notifyDataSetChanged()
     }
 

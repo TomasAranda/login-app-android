@@ -2,7 +2,6 @@ package com.example.login_app
 
 import android.app.AlertDialog
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.LayoutInflater
@@ -14,12 +13,11 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentActivity
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
-import com.example.login_app.api.RandomUserService
-import com.example.login_app.data.RandomUserResponse
+import com.example.login_app.data.AppDatabase
+import com.example.login_app.data.User
 import com.example.login_app.databinding.FragmentUsersListBinding
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 /**
  * A fragment representing a list of Users.
@@ -46,35 +44,24 @@ class UserFragment : Fragment() {
 
         binding.list.layoutManager = LinearLayoutManager(context)
         binding.list.adapter = UsersAdapter()
-        fetchRandomUsers(binding.list.adapter as UsersAdapter)
 
+        // Pass users from DB to RVAdapter
+        runBlocking {
+            launch {
+                val usersListFromDB: List<User>? = getUsersFromDB()
+                if (usersListFromDB != null) {
+                    (binding.list.adapter as UsersAdapter).setUsers(usersListFromDB)
+                }
+            }
+        }
 
         binding.userNameTitle = args.loggedUserName
 
         return view
     }
 
-    private fun fetchRandomUsers(adapter: UsersAdapter) {
-        RandomUserService.getUsers(object : Callback<RandomUserResponse> {
-            override fun onResponse(
-                call: Call<RandomUserResponse>,
-                response: Response<RandomUserResponse>
-            ) {
-                if (response.isSuccessful && response.body() != null) {
-                    adapter.setUsers(response.body()!!)
-                }
-            }
-
-            override fun onFailure(call: Call<RandomUserResponse>, t: Throwable) {
-                Log.e("API CALL ERROR", "${t.message}")
-                t.printStackTrace()
-            }
-        })
-    }
-
-    /* Updates List Title when User Item button is clicked. */
-    private fun adapterOnClick(user: UserContent.UserItem) {
-        binding.userNameTitle = user.name
+    private suspend fun getUsersFromDB(): List<User>? {
+        return context?.let { AppDatabase.getInstance(it).userDao().getAll() }
     }
 
     private fun handleBackPressed(activity: FragmentActivity?): OnBackPressedCallback {
