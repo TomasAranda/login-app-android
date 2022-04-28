@@ -24,7 +24,7 @@ data class RandomUserPicture (
 )
 
 data class RandomUserArgument (
-    val name: String,
-    val email: String,
-    val imageUrl: String
+    val name: String?,
+    val email: String?,
+    val imageUrl: String?
 ) : Serializable
