@@ -5,7 +5,7 @@ import androidx.room.*
 @Dao
 interface UserDao {
         @Query("SELECT * FROM users")
-        fun getAll(): List<User>
+        suspend fun getAll(): List<User>
 
         @Query("SELECT * FROM users WHERE id = (:userId)")
         fun findById(userId: Int): User
@@ -14,7 +14,7 @@ interface UserDao {
         fun insert(user: User)
 
         @Insert
-        fun insertAll(users: List<User>)
+        suspend fun insertAll(users: List<User>)
 
         @Delete
         fun delete(user: User)
